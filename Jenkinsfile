@@ -44,13 +44,13 @@ pipeline{
                 }
             }
         }
-        stage('Sonar cube analysis'){
+        stage('Sonar Cube Analysis'){
 
             steps{
 
                 script{
 
-                    withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                    withSonarQubeEnv(credentialsId: 'sonarapi') {
 
                         sh 'mvn clean package sonar:sonar'
                     }
@@ -64,7 +64,7 @@ pipeline{
 
                     script{
 
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api-key'
+                        waitForQualityGate abortPipeline: false, credentialsId: 'sonarapi'
                     }
                 }
             }
