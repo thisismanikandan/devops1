@@ -89,7 +89,7 @@ pipeline{
             steps{
                 script{
                     withCredentials([string(credentialsId: 'docker-passwd', variable: 'docker_passwd')]) {
-                        sh 'docker login -u manidevopsengineer -p ${docker-passwd}'
+                        sh 'docker login -u manidevopsengineer -p mGk3kWAx3i14.R'
                         sh 'docker image push project1/$JOB_NAME:v1.$BUILD_ID'
                         sh 'docker image push project1/$JOB_NAME:latest'
                     }
