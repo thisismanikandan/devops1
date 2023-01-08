@@ -85,6 +85,17 @@ pipeline{
                 }
             }
         }
+        stage('Push image to docker hub'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker-passwd', variable: 'docker_passwd')]) {
+                        sh 'docker login -u manidevopsengineer -p ${docker-passwd}'
+                        sh 'docker image push project1/$JOB_NAME:v1.$BUILD_ID'
+                        sh 'docker image push project1/$JOB_NAME:latest'
+                    }
+                }
+            }
+        }
         }
 
 }
