@@ -68,6 +68,13 @@ pipeline{
                     }
                 }
             }
+        stage('Uploading war file to Nexus'){
+            steps{
+                script{
+                    nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'com.example', nexusUrl: '192.168.10.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'project1-release', version: '1.0.0'
+                }
+            }
+        }
         }
 
 }
